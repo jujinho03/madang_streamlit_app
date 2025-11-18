@@ -132,7 +132,6 @@ with tab2:
         if cust_data_tab2:
             # --- [A] 기존 고객인 경우 ---
             custid = cust_data_tab2[0]['custid']
-            st.success(f"'{name_input_tab2}' 님의 고객번호({custid})가 확인되었습니다.")
             
         else:
             # --- [B] 신규 고객인 경우 (과제 핵심) ---
@@ -144,7 +143,6 @@ with tab2:
                 custid = new_custid
                 is_new_customer = True # 신규 고객 플래그 설정
                 
-                st.info(f"'{name_input_tab2}' 님은 신규 고객입니다. 고객번호 ({custid})번으로 자동 등록됩니다.")
                 
             except Exception as e:
                 st.error(f"신규 고객번호 생성 실패: {e}")
@@ -163,7 +161,6 @@ with tab2:
                         # 주소(address)와 전화번호(phone)는 'NULL'로 임의 설정
                         sql_insert_cust = f"INSERT INTO Customer (custid, name, address, phone) VALUES ({custid}, '{name_input_tab2}', NULL, NULL)"
                         run_query(sql_insert_cust)
-                        st.write(f"신규 고객 {name_input_tab2}님 등록 완료.") # 피드백
 
                     # 2. Orders 테이블에 거래 내역 INSERT
                     bookid = select_book.split(",")[0]
